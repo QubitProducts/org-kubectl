@@ -1,16 +1,24 @@
-hash: aafe99ab73306129b324378af7c816fbdee1f52a2d4f0760d725c556e0c675c3
-updated: 2017-04-12T22:31:41.56705968+01:00
+hash: 2b22423fca1fb67f4481bc337a7d1b303c08e62fb17260b5a21e01fa9fd6369f
+updated: 2017-05-01T15:35:08.377105367+01:00
 imports:
 - name: cloud.google.com/go
-  version: d975a46e03f736ec280eabad59edf506eb732df8
+  version: 57377bad3486b37af17b47230a61603794c798ae
   subpackages:
   - compute/metadata
+- name: github.com/fatih/color
+  version: 9131ab34cf20d2f6d83fdc67168a5430d1c7dc23
 - name: github.com/golang/glog
   version: 23def4e6c14b4da8ac2ed8007337bc5eb5007998
 - name: github.com/golang/protobuf
-  version: 2bba0603135d7d7f5cb73b2125beeda19c09f4ef
+  version: 4bd1920723d7b7c925de087aa32e2187708897f7
   subpackages:
   - proto
+- name: github.com/mattn/go-colorable
+  version: 5411d3eea5978e6cdc258b30de592b60df6aba96
+  repo: https://github.com/mattn/go-colorable
+- name: github.com/mattn/go-isatty
+  version: 57fdcb988a5c543893cc61bce354a6e24ab70022
+  repo: https://github.com/mattn/go-isatty
 - name: github.com/pkg/errors
   version: ff09b135c25aae272398c51a07235b90a75aa4f0
 - name: golang.org/x/net
@@ -19,7 +27,7 @@ imports:
   - context
   - context/ctxhttp
 - name: golang.org/x/oauth2
-  version: 7fdf09982454086d5570c7db3e11f360194830ca
+  version: a6bd8cefa1811bd24b86f8902872e4e8225f74c4
   subpackages:
   - google
   - internal
@@ -29,6 +37,11 @@ imports:
   version: 5a06fca2c336a4b2b2fcb45702e8c47621b2aa2c
   subpackages:
   - errgroup
+- name: golang.org/x/sys
+  version: e24f485414aeafb646f6fca458b0bf869c0880a1
+  repo: https://go.googlesource.com/sys
+  subpackages:
+  - unix
 - name: google.golang.org/api
   version: 48e49d1645e228d1c50c3d54fb476b2224477303
   subpackages:

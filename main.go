@@ -11,6 +11,7 @@ import (
 	"strings"
 	"sync"
 
+	"github.com/fatih/color"
 	"github.com/golang/glog"
 	"github.com/pkg/errors"
 	"golang.org/x/oauth2/google"
@@ -43,6 +44,8 @@ func main() {
 	}
 	saveCache(cachePath, ancestorCache)
 
+	cyan := color.New(color.FgCyan, color.Bold).SprintFunc()
+
 	for _, p := range projects {
 		resp, err := gke.Projects.Zones.Clusters.List(p, "-").Context(ctx).Do()
 		if err != nil {
@@ -57,6 +60,7 @@ func main() {
 				os.Exit(1)
 			}
 
+			fmt.Printf("%v in %v\n", cyan(c.Name), cyan(p))
 			context := fmt.Sprintf("gke_%v_%v_%v", p, c.Zone, c.Name)
 			err = runKubectlCmd(ctx, context, os.Args[2:len(os.Args)])
 			if err != nil {
@@ -72,7 +76,7 @@ func runKubectlCmd(ctx context.Context, context string, additionalArgs []string)
 		"--context",
 		context,
 	}, additionalArgs...)
-	glog.Infof("kubectl %v", strings.Join(args, " "))
+	glog.V(2).Infof("kubectl %v", strings.Join(args, " "))
 
 	cmd := exec.CommandContext(ctx, "kubectl", args...)
 	cmd.Stderr = os.Stderr
@@ -128,7 +132,7 @@ func findChildProjects(ctx context.Context, crm *cloudresourcemanager.Service, p
 	defer cancel()
 	grp, ctx := errgroup.WithContext(ctx)
 
-	glog.Infof("looking for projects with ancestors %v", parentResourceID)
+	glog.V(2).Infof("looking for projects with ancestors %v", parentResourceID)
 	for _, p := range projects {
 		p := p
 

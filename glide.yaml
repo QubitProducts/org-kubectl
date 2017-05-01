@@ -12,3 +12,4 @@ import:
   subpackages:
   - cloudresourcemanager/v1beta1
   - container/v1
+- package: github.com/fatih/color
